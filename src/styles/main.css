@@ -1,0 +1,16 @@
+body {
+  background-color: #121212;
+  padding: 0 30px;
+}
+.wrapper {
+  padding-top: 50px;
+  padding: 0 10px;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+
+}

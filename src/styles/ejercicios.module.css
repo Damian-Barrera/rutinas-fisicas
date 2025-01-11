@@ -1,0 +1,70 @@
+body {
+  display: block;
+}
+
+.wraper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.wraper h2 {
+  font-size: 1.8rem;
+}
+.tbody tr td{
+  border: 1px solid #e64900;
+  margin-top: 15px;
+}
+
+.wraper button {
+  width: 150px;
+  height: 40px;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.wraper button:hover {
+  background-color: #f85858;
+}
+
+.ejerciciosContainer table {
+  margin: auto;
+}
+
+.encabezados {
+  background-color: #343534;
+}
+
+.encabezados th,
+.cuerpo td {
+  width: 140px;
+  border: 1px solid #585858;
+  padding: 10px;
+  text-align: center;
+  color: #fdfdfd;
+}
+
+.edit{
+  color: #1c7ac7;
+  cursor: pointer;
+}
+.edit:hover{
+  color: #249bfc;
+  text-shadow: 0 0 2px #1c7ac7,
+               0 0 6px #1c7ac7 ;
+}
+.delete{
+  color: #be2323;
+  cursor: pointer;
+}
+.delete:hover{
+  color: #ff3636;
+  text-shadow: 0 0 2px #be2323,
+               0 0 6px #be2323;
+}
