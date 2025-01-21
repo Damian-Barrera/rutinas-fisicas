@@ -27,6 +27,9 @@
   color: white;
   outline: none;
 }
+.formulario select{
+  cursor: pointer;
+}
 .formulario input:focus {
   box-shadow: 0 0 6px #64e96b inset;
 }
@@ -55,4 +58,23 @@
 .formulario a{
   margin-left: 5px;
   color: #d0ff00;
+}
+
+.formulario button:disabled {
+  color:transparent;
+  background-color: #4caf4f1a;
+  cursor: not-allowed;
+}
+
+.alert {
+  color: #f13d06;
+  font-weight: bold;
+}
+
+.hidde{
+  display: none;
+}
+
+.fa-eye-slash{
+  color: red;
 }

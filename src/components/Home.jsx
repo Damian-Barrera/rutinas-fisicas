@@ -7,11 +7,11 @@ const Home = () => {
       <div className="wrapper">
         <div className={estilos.container}>
           <h1>Bienvenido a tu tracker personal de ejercicios</h1>
-          <NavLink to='login' >
+          <NavLink to='/login' >
             <button>Iniciar Sesión</button>
           </NavLink>
 
-          <NavLink to='register'>
+          <NavLink to='/register'>
             <button>Registrarte</button>
           </NavLink>
         </div>
