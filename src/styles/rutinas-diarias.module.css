@@ -46,8 +46,8 @@
   border-radius: 10px;
 }
 
-.ejercicios input:focus, 
-.comentario textarea:focus  {
+.ejercicios input:focus,
+.comentario textarea:focus {
   background-color: #0e857b;
 }
 
@@ -103,11 +103,12 @@
   padding: 5px;
   background-color: #470097;
   color: #fff;
-  font-size: .8rem;
+  font-size: 8rem;
   outline: none;
   border: none;
   border-radius: 5px;
   resize: none;
 }
 
+ 
  

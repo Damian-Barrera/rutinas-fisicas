@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import estilos from '../styles/rutinas-diarias.module.css'
 import { useNavigate } from 'react-router-dom'
+import { auth, db } from '../config/firebase'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
 
 const RutinasDiarias = () => {
@@ -10,17 +12,18 @@ const RutinasDiarias = () => {
   const [sentadillas, setSentadillas] = useState('')
   const [abdominales, setAbdominales] = useState('')
   const [fecha, setFecha] = useState('')
-  const [observacion, setObservacion] = useState('')
+  const [observaciones, setObservaciones] = useState('')
   const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
-  const enviarDatos = () => {
+  const enviarDatos = async () => {
 
     const flexNum = Number(flexiones)
     const domNum = Number(dominadas)
     const sentNum = Number(sentadillas)
     const abdNum = Number(abdominales)
+
 
     if (
       isNaN(flexNum) || isNaN(domNum) || isNaN(sentNum) || isNaN(abdNum)
@@ -30,13 +33,30 @@ const RutinasDiarias = () => {
     }
 
     const dataExercise = {
-      flexiones, dominadas, sentadillas, abdominales,fecha,observacion
+      creado:serverTimestamp(),
+      flexiones,
+      dominadas,
+      sentadillas,
+      abdominales,
+      fecha,
+      observaciones
     }
-    console.log(dataExercise)
-    reiniciarForm();
-    setError('')
-    navigate('/ejercicios')
+
+    try {
+      const subcoleeccionRef = collection(db, 'rutinas', auth.currentUser.uid, 'ejercicios')
+
+      await addDoc(subcoleeccionRef, dataExercise)
+
+
+      reiniciarForm();
+      navigate('/ejercicios')
+
+    } catch (error) {
+      console.log('Hubo un error al ingresar los campos. Verifique mas tarde', error)
+    }
+
   }
+
 
   const reiniciarForm = () => {
     setFlexiones('')
@@ -44,10 +64,9 @@ const RutinasDiarias = () => {
     setSentadillas('')
     setAbdominales('')
     setFecha('')
-    setObservacion('')
+    setObservaciones('')
     setError('')
   }
-
 
   return (
     <>
@@ -81,7 +100,7 @@ const RutinasDiarias = () => {
           </div>
           <div className={estilos.comentario}>
             <label htmlFor="obs">Comentarios</label>
-            <textarea id="obs" value={observacion} onChange={(e) => setObservacion(e.target.value)}></textarea>
+            <textarea id="obs" value={observaciones} onChange={(e) => setObservaciones(e.target.value)}></textarea>
           </div>
           {error ? <p className={estilos.error} >{error}</p> : ''}
           <div className={estilos.button}>
