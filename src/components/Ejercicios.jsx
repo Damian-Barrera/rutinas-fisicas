@@ -112,7 +112,7 @@ const Ejercicios = () => {
         <>
             <header className={estilos.header}>
                 <h2 className={estilos.bienvenida} > {usuarioGenero === 'masculino' ? 'Bienvenido' : 'Bienvenida'}  {usuarioName} ! </h2>
-                <h3 className={estilos.usuarioActual}> Usuario: {usuarioActualAutenticado.email}</h3>
+                <h3 className={estilos.usuarioActual}> {usuarioActualAutenticado.email}</h3>
             </header>
             <section className={estilos.header2}>
                 <div className={estilos.rutinaDiaria} >

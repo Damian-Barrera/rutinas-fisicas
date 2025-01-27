@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   min-height: 100vh;
   height: auto;
@@ -15,4 +19,30 @@ body {
   justify-content: center;
   /* align-items: center; */
   font-family: "Courier New", Courier, monospace;
+}
+
+/* ********************************* */
+/* Responsive !!  */
+
+/* @media (max-width: 1024px) { 
+
+} */
+
+/* @media (max-width: 768px) {
+ 
+} */
+
+@media (max-width: 480px) {
+  body {
+    padding: 0px;
+  }
+  .wrapper {
+    /* border: 1px solid red; */
+    height: 600px;
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

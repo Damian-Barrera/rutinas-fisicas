@@ -79,3 +79,10 @@
 .fa-eye-slash{
   color: red;
 }
+
+/* ******************************** */
+/* RESPONSIVE  */
+
+@media (max-widt: 480px) {
+  
+}

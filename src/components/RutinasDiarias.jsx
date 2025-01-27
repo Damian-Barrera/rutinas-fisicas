@@ -23,7 +23,7 @@ const RutinasDiarias = () => {
     const domNum = Number(dominadas)
     const sentNum = Number(sentadillas)
     const abdNum = Number(abdominales)
-
+    
 
     if (
       isNaN(flexNum) || isNaN(domNum) || isNaN(sentNum) || isNaN(abdNum)
@@ -32,14 +32,19 @@ const RutinasDiarias = () => {
       return
     }
 
+    if(fecha ==='') {
+      setError('Debe colocar una fecha')
+      return
+    }
+
     const dataExercise = {
       creado:serverTimestamp(),
-      flexiones,
-      dominadas,
-      sentadillas,
-      abdominales,
+      flexiones: flexiones || 0,
+      dominadas: dominadas || 0,
+      sentadillas: sentadillas || 0,
+      abdominales: abdominales || 0,
       fecha,
-      observaciones
+      observaciones: observaciones || ''
     }
 
     try {
@@ -96,7 +101,7 @@ const RutinasDiarias = () => {
           </div>
           <div className={estilos.fecha}>
             <label htmlFor="fecha">Fecha</label>
-            <input type="date" id="fecha" value={fecha} onChange={(e) => setFecha(e.target.value)} />
+            <input type="date" id="fecha" value={fecha} required onChange={(e) => setFecha(e.target.value)} />
           </div>
           <div className={estilos.comentario}>
             <label htmlFor="obs">Comentarios</label>

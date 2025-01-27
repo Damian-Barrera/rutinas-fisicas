@@ -1,5 +1,5 @@
- .container {
-  margin-top: -0;
+.container {
+  margin-top: 0;
   text-align: center;
   font-size: 2rem;
 }
@@ -11,17 +11,35 @@
   border-radius: 5px;
   color: white;
   outline: none;
-  background-color: #1a72f7 ;
+  background-color: #1a72f7;
   cursor: pointer;
   border: none;
 }
 
-.container button:hover{
-    background-color: #458cf7;
-
+.container button:hover {
+  background-color: #458cf7;
 }
- 
+
 .container a:nth-of-type(2) button {
-    background-color: #0c8053;
+  background-color: #0c8053;
 }
+/* ********************************* */
+/* Responsive !!  */
 
+/* @media (max-width: 1024px) {
+  
+} */
+
+/* @media (max-width: 768px) {
+
+} */
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 1rem;
+  }
+
+  .container button {
+    margin: 10px 15px;
+  }
+}

@@ -103,12 +103,50 @@
   padding: 5px;
   background-color: #470097;
   color: #fff;
-  font-size: 8rem;
+  font-size: .8rem;
   outline: none;
   border: none;
   border-radius: 5px;
   resize: none;
 }
 
- 
- 
+/* ************************************* */
+/* Responsive !  */
+
+@media (max-width: 480px) {
+  .rutinas-title {
+    margin-bottom: 20px;
+    font-size: 1rem;
+   }
+
+  .ejercicios form {
+    width: auto;
+  }
+
+  .ejercicios label {
+    margin: 10px 0;
+    width: 50%;
+  }
+
+  .ejercicios input {
+    /* margin: 0 15px; */
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+
+  .ejercicios button {
+    font-size: 1rem;   
+  }
+
+  .fecha input,
+  .comentario textarea {
+    min-width: 140px;
+    font-size: 1rem;
+  }
+  .comentario textarea {
+    width: 140px;
+    font-size: .8rem;    
+  }
+}
