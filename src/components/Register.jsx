@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { db, auth } from '../config/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
+import Loader from '../utils/Loader'
+
 
 const Register = () => {
 
@@ -14,6 +16,7 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [contraseña, setContraseña] = useState('')
     const [recontraseña, setRecontraseña] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const limpiarFormulario = () => {
         setNombre('');
@@ -51,6 +54,7 @@ const Register = () => {
     const registrar = async (e) => {
         e.preventDefault();
         try {
+            setLoading(true)
             const userCredential = await createUserWithEmailAndPassword(auth, email, contraseña)
             const user = userCredential.user
             const uid = user.uid
@@ -66,6 +70,7 @@ const Register = () => {
 
     return (
         <>
+            {loading && <Loader loading={loading} />}
             <div className="wrapper">
                 <form className={estilos.formulario} onSubmit={registrar} >
                     <h2>Por favor ingresa tus datos</h2>

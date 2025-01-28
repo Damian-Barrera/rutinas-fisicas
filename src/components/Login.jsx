@@ -3,23 +3,26 @@ import estilos from '../styles/form.module.css'
 import { useEffect, useState } from 'react'
 import { auth } from '../config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-
+import Loader from '../utils/Loader'
 
 const Login = () => {
 
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
 
-  },[])
+  }, [])
 
   const login = async () => {
+    setLoading(true)
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
       if (userCredential) {
+        <Loader loading={loading} />
         // const uid = userCredential.user.uid
         navigate('/ejercicios')
 
@@ -32,13 +35,14 @@ const Login = () => {
   }
 
   const handleKeyUp = (e) => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       login();
     }
   }
 
   return (
     <>
+      {loading && <Loader loading={loading} />}
       <div className="wrapper">
         <form className={estilos.formulario} onKeyUp={handleKeyUp}>
           <h2>Inicia Sesión</h2>
