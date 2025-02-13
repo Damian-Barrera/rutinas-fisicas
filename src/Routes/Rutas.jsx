@@ -8,50 +8,13 @@ import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import Loader from '../utils/Loader'
+import Edit from '../utils/Edit'
 
-
-// const Rutas = () => {
-
-//   const [usuario, setUsuario] = useState(null)
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (user) => {
-
-//       setUsuario(user);
-
-//       if(user && window.location.pathname === '/login'){
-//         navigate('/ejercicios')
-//       }if(user && window.location.pathname === '/register'){
-//         navigate('/ejercicios')
-//       } 
-
-//     });
-
-//     return () => unsubscribe();
-//   }, [navigate]);
-
-
-//   return (
-//     <>
-//       <Routes>
-//         <Route path='/' element={<Home />} ></Route>
-//         <Route path='/register' element={<Register />} ></Route>/
-//         <Route path='/login' element={<Login />} ></Route>
-//         <Route path='/rutinas-diarias' element= {<RutinasDiarias/>} ></Route>
-//         <Route path='/ejercicios' element={usuario ? <Ejercicios /> : <Navigate to='/' />} ></Route>
-//         <Route path='/*' element={<Navigate to='/' />} ></Route>
-//       </Routes>
-//     </>
-//   )
-// }
-
-// export default Rutas
 
 
 const Rutas = () => {
   const [usuario, setUsuario] = useState(null);
-  const [loading, setLoading] = useState(true); // Nuevo estado para controlar la carga
+  const [loading, setLoading] = useState(true); //  estado para controlar la carga
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,6 +45,7 @@ const Rutas = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/rutinas-diarias" element={<RutinasDiarias />} />
+        <Route path='/edit' element={<Edit/>}/>
         <Route
           path="/ejercicios"
           element={usuario ? <Ejercicios /> : <Navigate to="/" />}

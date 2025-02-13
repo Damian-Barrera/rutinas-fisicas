@@ -5,11 +5,15 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.ejercicios {
+  display: flex;
+  justify-content: center;
+}
 .ejercicios form {
   border: 1px solid orange;
   padding: 20px;
   width: 50%;
+
 }
 
 .ejercicios form div {
@@ -103,7 +107,7 @@
   padding: 5px;
   background-color: #470097;
   color: #fff;
-  font-size: .8rem;
+  font-size: 0.8rem;
   outline: none;
   border: none;
   border-radius: 5px;
@@ -117,10 +121,10 @@
   .rutinas-title {
     margin-bottom: 20px;
     font-size: 1rem;
-   }
+  }
 
   .ejercicios form {
-    width: auto;
+    width: 100%;
   }
 
   .ejercicios label {
@@ -137,7 +141,7 @@
   }
 
   .ejercicios button {
-    font-size: 1rem;   
+    font-size: 1rem;
   }
 
   .fecha input,
@@ -147,6 +151,6 @@
   }
   .comentario textarea {
     width: 140px;
-    font-size: .8rem;    
+    font-size: 0.8rem;
   }
 }

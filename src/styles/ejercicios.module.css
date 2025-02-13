@@ -127,6 +127,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 /* *************** *******/
 /* responsive !  */
 
@@ -139,6 +140,16 @@ body {
     width: 100%;
     font-size: 0.8rem;
     text-align: start;
+  }
+
+  .tableContainer {
+    margin: auto;
+    width: 360px;
+    overflow-x: auto;
+  }
+
+  .tableContainer table {
+    min-width: 500px;
   }
 
   .tbody tr td {
@@ -185,8 +196,11 @@ body {
     color: #fdfdfd;
   }
 
-  .tbody td {
+  /* .tbody td {
     font-size: 0.8rem !important;
+  } */
+  .observaciones {
+    font-size: .6rem !important;
   }
   .alert {
     width: 100%;
