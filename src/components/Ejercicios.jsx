@@ -103,70 +103,75 @@ const Ejercicios = () => {
 
     return (
         <>
-            {loading && <Loader loading={loading} />}
-
-            <header className={estilos.header}>
-                <h2 className={estilos.bienvenida}>
-                    {usuarioGenero === 'femenino' ? 'Bienvenida' : 'Bienvenido'} {usuarioName} !
-                </h2>
-                <h3 className={estilos.usuarioActual}>{usuarioActualAutenticado.email}</h3>
-            </header>
-            <section className={estilos.header2}>
-                <div className={estilos.rutinaDiaria}>
-                    <NavLink to={'/rutinas-diarias'}>
-                        <button>Mi rutina de hoy</button>
-                    </NavLink>
-                </div>
-                <button onClick={cerrarSesion}>Cerrar Sesión</button>
-            </section>
-            <div className={estilos.ejerciciosContainer}>
-                <div className={estilos.wraper}>
-                    <h2>Mis Ejercicios:</h2>
-                </div >
-                <section className={estilos.tableContainer}>
-                    {subcoleccionExiste ? (
-                        <table className={estilos.table}>
-                            <thead>
-                                <tr className={estilos.encabezados}>
-                                    <th>Fecha</th>
-                                    <th>Flexiones</th>
-                                    <th>Dominadas</th>
-                                    <th>Sentadillas</th>
-                                    <th>Abdominales</th>
-                                    <th>Observaciones</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody className={estilos.tbody}>
-                                {ejercicios.map((ejercicio) => (
-
-                                    <tr key={ejercicio.id} className={estilos.cuerpo}>
-                                        <td>{ejercicio.fecha}  </td>
-                                        <td>{ejercicio.flexiones}</td>
-                                        <td>{ejercicio.dominadas}</td>
-                                        <td>{ejercicio.sentadillas}</td>
-                                        <td>{ejercicio.abdominales}</td>
-                                        <td className={estilos.observaciones}>{ejercicio.observaciones}</td>
-                                        <td>
-                                            <span className={estilos.edit} onClick={() => editarRegistro(ejercicio)}>
-                                                Editar
-                                            </span>{' '}
-                                            /{' '}
-                                            <span className={estilos.delete} onClick={() => borrarRegistro(ejercicio.id)}>
-                                                Eliminar
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    ) : (
-                        <p className={estilos.alert}>Todavía no tienes ningún dato creado</p>
-                    )}
-                </section>
-            </div>
+            {loading && <Loader />} {/* Este es el spinner que se verá mientras carga */}
+    
+            {!loading && (
+                <>
+                    <header className={estilos.header}>
+                        <h2 className={estilos.bienvenida}>
+                            {usuarioGenero === 'femenino' ? 'Bienvenida' : 'Bienvenido'} {usuarioName} !
+                        </h2>
+                        <h3 className={estilos.usuarioActual}>{usuarioActualAutenticado.email}</h3>
+                    </header>
+                    <section className={estilos.header2}>
+                        <div className={estilos.rutinaDiaria}>
+                            <NavLink to={'/rutinas-diarias'}>
+                                <button>Mi rutina de hoy</button>
+                            </NavLink>
+                        </div>
+                        <button onClick={cerrarSesion}>Cerrar Sesión</button>
+                    </section>
+                    <div className={estilos.ejerciciosContainer}>
+                        <div className={estilos.wraper}>
+                            <h2>Mis Ejercicios:</h2>
+                        </div>
+                        <section className={estilos.tableContainer}>
+                            {subcoleccionExiste ? (
+                                <table className={estilos.table}>
+                                    <thead>
+                                        <tr className={estilos.encabezados}>
+                                            <th>Fecha</th>
+                                            <th>Flexiones</th>
+                                            <th>Dominadas</th>
+                                            <th>Sentadillas</th>
+                                            <th>Abdominales</th>
+                                            <th>Observaciones</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className={estilos.tbody}>
+                                        {ejercicios.map((ejercicio) => (
+                                            <tr key={ejercicio.id} className={estilos.cuerpo}>
+                                                <td>{ejercicio.fecha}  </td>
+                                                <td>{ejercicio.flexiones}</td>
+                                                <td>{ejercicio.dominadas}</td>
+                                                <td>{ejercicio.sentadillas}</td>
+                                                <td>{ejercicio.abdominales}</td>
+                                                <td className={estilos.observaciones}>{ejercicio.observaciones}</td>
+                                                <td>
+                                                    <span className={estilos.edit} onClick={() => editarRegistro(ejercicio)}>
+                                                        Editar
+                                                    </span>{' '}
+                                                    /{' '}
+                                                    <span className={estilos.delete} onClick={() => borrarRegistro(ejercicio.id)}>
+                                                        Eliminar
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <p className={estilos.alert}>Todavía no tienes ningún dato creado</p>
+                            )}
+                        </section>
+                    </div>
+                </>
+            )}
         </>
     );
+    
+
 };
 
 export default Ejercicios;

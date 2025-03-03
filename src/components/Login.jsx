@@ -1,9 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import estilos from '../styles/form.module.css'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { auth } from '../config/firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import Loader from '../utils/Loader'
+import { LuEye, LuEyeClosed } from "react-icons/lu";
 
 const Login = () => {
 
@@ -11,10 +12,14 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false)
+  const [verClave, setVerClave] = useState(false)
 
-  useEffect(() => {
 
-  }, [])
+
+
+  // useEffect(() => {
+
+  // }, [])
 
   const login = async () => {
     setLoading(true)
@@ -30,6 +35,10 @@ const Login = () => {
 
     } catch (error) {
       console.log(error)
+      console.log(error.code)
+    }
+    finally{
+      setLoading(false); // Desactiva el spinner al finalizar
     }
 
   }
@@ -43,22 +52,48 @@ const Login = () => {
   return (
     <>
       {loading && <Loader loading={loading} />}
-      <div className="wrapper">
-        <form className={estilos.formulario} onKeyUp={handleKeyUp}>
-          <h2>Inicia Sesión</h2>
-
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-
-          <label htmlFor="password">Contraseña:</label>
-          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <hr />
-          <button type="button" onClick={login} >Ingresar</button>
-          <p> ¿No tenes cuenta? <NavLink to='/register' >Registrate</NavLink> </p>
-        </form>
-      </div>
+      {!loading && (
+        <div className="wrapper">
+          <form className={estilos.formulario} onKeyUp={handleKeyUp}>
+            <h2>Inicia Sesión</h2>
+  
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+  
+            <label htmlFor="password">Contraseña:</label>
+            <div className={estilos.inputContainer}>
+              <input
+                className={estilos.inputPass}
+                type={verClave ? "text" : "password"}
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span className={estilos.eye} onClick={() => setVerClave(!verClave)}>
+                {verClave ? <LuEye /> : <LuEyeClosed />}
+              </span>
+            </div>
+            <hr />
+            <button type="button" onClick={login}>
+              Ingresar
+            </button>
+            <p>
+              ¿No tenes cuenta? <NavLink to="/register">Registrate</NavLink>
+            </p>
+          </form>
+        </div>
+      )}
     </>
-  )
+  );
+  
 }
 
 export default Login

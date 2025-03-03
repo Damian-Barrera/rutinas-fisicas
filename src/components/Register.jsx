@@ -5,6 +5,7 @@ import { db, auth } from '../config/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import Loader from '../utils/Loader'
+import { LuEye, LuEyeClosed } from "react-icons/lu";
 
 
 const Register = () => {
@@ -17,7 +18,8 @@ const Register = () => {
     const [contraseña, setContraseña] = useState('')
     const [recontraseña, setRecontraseña] = useState('')
     const [loading, setLoading] = useState(false)
-
+    const [verClave, setVerClave] = useState(false)
+    const [verClave2, setVerClave2] = useState(false)
     const limpiarFormulario = () => {
         setNombre('');
         setApellido('');
@@ -95,11 +97,24 @@ const Register = () => {
                     <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
                     <label htmlFor="password">Contraseña:</label>
-                    <input className={estilos.password} type="password" name="password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} required />
-
+                    <div className={estilos.inputContainer}>
+                        <input className={estilos.password}
+                            type={verClave ? 'text' : 'password'}
+                            name="password"
+                            value={contraseña} onChange={(e) => setContraseña(e.target.value)} required />
+                        <span className={estilos.eye} onClick={() => setVerClave(!verClave)} >
+                            {verClave ? <LuEye /> : <LuEyeClosed />}
+                        </span>
+                    </div>
                     <label htmlFor="password">Repetir Contraseña:</label>
-                    <input className={estilos.repassword} type="password" name="password" value={recontraseña} onChange={(e) => setRecontraseña(e.target.value)} required />
-
+                    <div className={estilos.inputContainer}>
+                        <input className={estilos.repassword}
+                            type= { verClave2 ? 'text' : 'password' }
+                            name="password" value={recontraseña} onChange={(e) => setRecontraseña(e.target.value)} required />
+                        <span className={estilos.eye} onClick={() => setVerClave2(!verClave2)} >
+                            {verClave2 ? <LuEye /> : <LuEyeClosed />}
+                        </span>
+                    </div>
                     <hr />
                     <button type="submit" disabled={!contraseña || contraseña !== recontraseña}  >Registrarse</button>
                     <p className='opciones'>¿Ya tenes cuenta? <NavLink to='/login'>Acceder</NavLink></p>

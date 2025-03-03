@@ -9,7 +9,13 @@ body {
   align-items: center;
   color: #fff;
   font-family: "Courier New", Courier, monospace;
+ }
+
+ .ejerciciosContainer {
+  position: relative;
+  z-index: 1;
 }
+
 
 .header {
   margin-bottom: 20px;

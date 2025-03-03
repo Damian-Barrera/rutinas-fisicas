@@ -28,6 +28,18 @@
   color: white;
   outline: none;
 }
+.formulario .inputContainer{
+  position: relative;
+}
+.formulario .eye{
+  position: absolute;
+  color: #4caf50;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-30%);
+  cursor: pointer;
+  }
+
 .formulario select{
   cursor: pointer;
 }
@@ -79,6 +91,7 @@
 .fa-eye-slash{
   color: red;
 }
+ 
 
 /* ******************************** */
 /* RESPONSIVE  */
