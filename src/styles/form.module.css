@@ -1,7 +1,21 @@
+.wrapperLogin {
+  height: 90vh;
+  background-image: url("../assets/img/flexiones.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.wrapperRegister{
+  height: 100vh;
+  background-image: url('../assets/img/dominadas.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .formulario {
   width: 400px;
   margin-top: 50px;
-  background-color: #1e1e1e;
+  background-color: #1e1e1e93;
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #4caf50;
@@ -28,19 +42,19 @@
   color: white;
   outline: none;
 }
-.formulario .inputContainer{
+.formulario .inputContainer {
   position: relative;
 }
-.formulario .eye{
+.formulario .eye {
   position: absolute;
   color: #4caf50;
   right: 10px;
   top: 50%;
   transform: translateY(-30%);
   cursor: pointer;
-  }
+}
 
-.formulario select{
+.formulario select {
   cursor: pointer;
 }
 .formulario input:focus {
@@ -65,16 +79,16 @@
   box-shadow: 0 0 5px #eb7412;
 }
 
-.formulario p{
+.formulario p {
   font-size: 12px;
 }
-.formulario a{
+.formulario a {
   margin-left: 5px;
   color: #d0ff00;
 }
 
 .formulario button:disabled {
-  color:transparent;
+  color: transparent;
   background-color: #4caf4f1a;
   cursor: not-allowed;
 }
@@ -82,20 +96,19 @@
 .alert {
   color: #f13d06;
   font-weight: bold;
+  text-shadow: none;
 }
 
-.hidde{
+.hidde {
   display: none;
 }
 
-.fa-eye-slash{
+.fa-eye-slash {
   color: red;
 }
- 
 
 /* ******************************** */
 /* RESPONSIVE  */
 
 @media (max-widt: 480px) {
-  
 }

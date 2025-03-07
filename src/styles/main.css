@@ -5,15 +5,16 @@
 body {
   min-height: 100vh;
   height: auto;
-  background: linear-gradient(to top, #121212, #011411);
-  /* background-repeat: no-repeat; */
+   background: linear-gradient(to top, #121212, #011411);
   padding: 0 30px;
+ 
 }
 .wrapper {
   height: auto;
   margin-top: 50px;
   padding: 0 10px;
-  color: white;
+   color: #ffff;
+  text-shadow: 0 0 10px #38f3a5;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;

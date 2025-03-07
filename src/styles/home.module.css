@@ -1,3 +1,11 @@
+.wrapContainer {
+  height: 90vh;
+  background-image: url("../assets/img/weightlifter-3944725_640.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
 .container {
   margin-top: 0;
   text-align: center;
@@ -18,10 +26,16 @@
 
 .container button:hover {
   background-color: #458cf7;
+  box-shadow: 0 0 10px #2f7ff8;
 }
 
 .container a:nth-of-type(2) button {
   background-color: #0c8053;
+}
+
+.container a:nth-of-type(2) button:hover {
+  background-color: #15ad73;
+  box-shadow: 0 0 10px #27ad15 ;
 }
 /* ********************************* */
 /* Responsive !!  */
