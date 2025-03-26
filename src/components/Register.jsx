@@ -1,15 +1,15 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import estilos from '../styles/form.module.css'
-import { useState } from 'react'
-import { db, auth } from '../config/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import { useState, useEffect } from 'react'
+import { db, auth, googleProvider } from '../config/firebase'
+import { createUserWithEmailAndPassword, signInWithPopup, signOut,sendEmailVerification } from 'firebase/auth'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 import Loader from '../utils/Loader'
 import { LuEye, LuEyeClosed } from "react-icons/lu";
-
+// import google from '../assets/img/google.png'
+// import facebook from '../assets/img/facebook.png'
 
 const Register = () => {
-
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [nacimiento, setNacimiento] = useState('')
@@ -23,6 +23,12 @@ const Register = () => {
     const [errorMail, setErrorMail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
     const [alerta, setAlerta] = useState('')
+    // const [redirigir, setRedirigir] = useState(false);
+    // const [errorGoogle, setErrorGoogle] = useState('Esta cuenta ya existe');
+
+    // const navigate = useNavigate();
+
+
 
     const limpiarFormulario = () => {
         setNombre('');
@@ -64,7 +70,7 @@ const Register = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, contraseña)
             const user = userCredential.user
             const uid = user.uid
-
+            sendEmailVerification(user)
             crearBaseDatos(uid)
 
             limpiarFormulario();
@@ -106,7 +112,119 @@ const Register = () => {
         }
 
     }
+    // ********************************************+
 
+
+
+
+    // const googleRegister = async () => {
+
+
+    //     try {
+    //         setLoading(true);
+
+    //         const result = await signInWithPopup(auth, googleProvider);
+    //         const user = result.user;
+
+    //         const uid = user.uid;
+    //         const nombre = user.displayName || "Usuario de Google";
+    //         const email = user.email;
+    //         const img_perfil_url = user.photoURL || "";
+
+    //         const usuarioExistente = await verificarUsuarioExistente(uid);
+
+    //         if (usuarioExistente) {
+    //              await signOut(auth);                // Cierra sesión
+ 
+
+    //             setTimeout(() => {
+    //                 navigate('/register');
+    //              }, 50);
+    //             return;
+    //         }
+
+    //         await crearBaseDatosGoogle(uid, nombre, email, img_perfil_url);
+    //     } catch (error) {
+    //         console.error("Error al registrar usuario con Google:", error);
+
+    //         if (error.code === 'auth/popup-closed-by-user') {
+    //             setErrorMail('El proceso fue cancelado.');
+    //         } else {
+    //             setErrorMail('Hubo un error al registrarte. Por favor, intenta de nuevo.');
+    //         }
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
+
+
+
+
+
+    // Verificar si el usuario ya existe en Firestore usando el UID
+    // const verificarUsuarioExistente = async (uid) => {
+    //     try {
+    //         console.log("Verificando usuario con UID:", uid);
+
+    //         // Buscamos al usuario en la colección 'rutinas' usando el UID como identificador
+    //         const usuariosRef = doc(db, 'rutinas', uid); // Usamos UID como clave
+    //         const docSnap = await getDoc(usuariosRef);
+
+    //         if (docSnap.exists()) {
+    //             console.log("El usuario ya está registrado");
+    //             return true; // Usuario ya registrado
+    //         } else {
+    //             console.log("El usuario no está registrado");
+    //             return false; // Usuario no registrado
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al verificar usuario:', error);
+    //         return false;  // En caso de error, asumimos que no está registrado
+    //     }
+    // };
+
+    // Crear base de datos para el nuevo usuario de google
+    // const crearBaseDatosGoogle = async (uid, nombre, email, img_perfil_url) => {
+    //     try {
+    //         console.log("Creando base de datos para el usuario con UID:", uid);
+    //         const usuarioRef = doc(db, 'rutinas', uid); // Usamos UID como clave para el documento
+
+    //         // Verificamos si ya existe el documento antes de crearlo
+    //         const docSnap = await getDoc(usuarioRef);
+    //         if (docSnap.exists()) {
+    //             console.log("El usuario ya existe en la base de datos, no se crea de nuevo.");
+    //             return; // Si el usuario ya existe en la base de datos, no lo creamos nuevamente
+    //         }
+
+    //         // Si no existe, creamos el usuario en la base de datos
+    //         await setDoc(usuarioRef, {
+    //             nombre,
+    //             apellido: "",
+    //             fecha_nacimiento: "",
+    //             genero: "",
+    //             email,
+    //             img_perfil_url
+    //         });
+
+    //         console.log("Usuario registrado exitosamente");
+    //     } catch (error) {
+    //         console.error('Error al crear la base de datos con Google:', error);
+    //     }
+    // };
+
+
+
+
+
+
+
+
+
+
+
+    // const facebookRegister = () => {
+    //     console.log('Registrado con facebook')
+    // }
 
     return (
         <>
@@ -157,8 +275,24 @@ const Register = () => {
                         </div>
                         <hr />
                         {alerta && <p className={estilos.alert} > {alerta} </p>}
+                        <div className={estilos['registro-opcional']} >
+                            {/* <p>O registrate con:</p>
+                            <span> <img
+                                src={google}
+                                alt="google"
+                                width={'20px'}
+                                title='Registrate con google'
+                                onClick={googleRegister} />
+                            </span> 
+                            //Cancelado hasta encontar a falla de crear usuarios con google
+                            */   }
+                                    
+
+                        </div>
+                        {/* {errorGoogle && <p className={estilos.alert} > {errorGoogle} </p>} */}
                         <button type="submit" disabled={!contraseña || contraseña !== recontraseña}  >Registrarse</button>
                         <p className='opciones'>¿Ya tenes cuenta? <NavLink to='/login'>Acceder</NavLink></p>
+
                     </form>
                 </div>
             </div>

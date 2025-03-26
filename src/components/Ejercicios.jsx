@@ -1,4 +1,4 @@
-import { signOut } from 'firebase/auth';
+import { signOut, sendEmailVerification } from 'firebase/auth';
 import estilos from '../styles/ejercicios.module.css';
 import { auth, db } from '../config/firebase';
 import { NavLink } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Loader from '../utils/Loader'
 // import Edit from '../utils/Edit';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import MenuLateral from './MenuLateral';
 
 
 
@@ -19,13 +20,23 @@ const Ejercicios = () => {
     const [subcoleccionExiste, setSubcoleccionExiste] = useState(false);
     const [ejercicios, setEjercicios] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [emailVerified, setEmailVerified] = useState(false)
+
     // const [editarDatos, setEditarDatos] = useState(null)
     const usuarioActual = auth.currentUser.uid;
     const navigate = useNavigate()
 
-
+    
 
     useEffect(() => {
+
+        if (usuarioActualAutenticado.emailVerified === false) {
+            setEmailVerified(false)
+        } else {
+            console.log('usuario verificado')
+            setEmailVerified(true)
+        }
+
         const obtenerDatosEnTiempoReal = async () => {
             try {
                 const docRef = doc(db, 'rutinas', usuarioActualAutenticado.uid);
@@ -61,13 +72,11 @@ const Ejercicios = () => {
                 console.error('Error al obtener los datos:', error);
             }
         };
-
-        obtenerDatosEnTiempoReal();
+         obtenerDatosEnTiempoReal();
     }, [usuarioActualAutenticado.uid]);
 
     const cerrarSesion = async () => {
         await signOut(auth);
-        console.log('Sesión Cerrada');
     };
 
     const editarRegistro = (ejercicio) => {
@@ -100,13 +109,46 @@ const Ejercicios = () => {
 
     };
 
+    const verificarEmail = async () => {
+        if (usuarioActualAutenticado) {
+            try {
+                await sendEmailVerification(usuarioActualAutenticado);
+                Swal.fire({
+                    title: "Correo enviado",
+                    text: "Revisa tu bandeja de entrada para verificar tu cuenta.",
+                    icon: "success"
+                });
+            } catch (error) {
+                console.error("Error al enviar el correo de verificación:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo enviar el correo de verificación.",
+                    icon: "error"
+                });
+            }
+        }
+    };
+    
+    
+    
 
     return (
         <>
+            <MenuLateral />
+            
             {loading && <Loader />} {/* Este es el spinner que se verá mientras carga */}
-    
+
             {!loading && (
                 <>
+                    {
+                        emailVerified === false ?
+                            <div className={estilos.verificarCorreo} >
+                                <p > Primero debes verificar tu cuenta. Por favor haz clic en el enlace que se te envio a tu correo electronico.</p>
+                                <span onClick={verificarEmail} >Reenviar enlace de verificacion</span>
+                            </div>
+                            : ''
+                    }
+
                     <header className={estilos.header}>
                         <h2 className={estilos.bienvenida}>
                             {usuarioGenero === 'femenino' ? 'Bienvenida' : 'Bienvenido'} {usuarioName} !
@@ -166,12 +208,14 @@ const Ejercicios = () => {
                             )}
                         </section>
                     </div>
+
                 </>
             )}
         </>
     );
-    
+
 
 };
+
 
 export default Ejercicios;

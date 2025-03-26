@@ -3,6 +3,7 @@ import estilos from '../styles/rutinas-diarias.module.css'
 import { useNavigate } from 'react-router-dom'
 import { auth, db } from '../config/firebase'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import MenuLateral from './MenuLateral'
 
 
 const RutinasDiarias = () => {
@@ -75,6 +76,7 @@ const RutinasDiarias = () => {
 
   return (
     <>
+    <MenuLateral />
       <section className={estilos['rutinas-title']} >
         <h3  >Rutinas de hoy</h3>
         <button className={estilos.btn} type="button" onClick={() => navigate('/ejercicios')} >Ver mis ejercicios</button>

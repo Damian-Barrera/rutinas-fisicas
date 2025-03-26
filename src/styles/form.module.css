@@ -5,16 +5,16 @@
   background-position: center;
 }
 
-.wrapperRegister{
+.wrapperRegister {
   height: 100vh;
-  background-image: url('../assets/img/dominadas.png');
+  background-image: url("../assets/img/dominadas.png");
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .formulario {
   width: 400px;
-  margin-top: 50px;
+  margin-top: 0;
   background-color: #1e1e1e93;
   padding: 20px;
   border-radius: 10px;
@@ -93,6 +93,19 @@
   cursor: not-allowed;
 }
 
+.registro-opcional {
+  display: flex;
+  align-items: center;
+}
+
+.registro-opcional p {
+  font-size: 1rem ;
+}
+.registro-opcional span {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .alert {
   color: #f13d06;
   font-weight: bold;
@@ -110,5 +123,8 @@
 /* ******************************** */
 /* RESPONSIVE  */
 
-@media (max-widt: 480px) {
+@media (max-width: 480px) {
+  .formulario {
+    margin-top: 50px;
+  }
 }

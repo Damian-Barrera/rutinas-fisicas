@@ -15,8 +15,6 @@ const Login = () => {
   const [verClave, setVerClave] = useState(false)
   const [error, setError] = useState(false)
 
-
-
   // useEffect(() => {
 
   // }, [])
@@ -28,6 +26,8 @@ const Login = () => {
 
       if (userCredential) {
         <Loader loading={loading} />
+
+
         // const uid = userCredential.user.uid
         navigate('/ejercicios')
 
@@ -55,6 +55,7 @@ const Login = () => {
 
   return (
     <>
+
       <div className={estilos.wrapperLogin} >
         {loading && <Loader loading={loading} />}
         {!loading && (

@@ -35,7 +35,7 @@ const Rutas = () => {
 
   // Mostrar una pantalla de carga mientras se verifica el estado del usuario
   if (loading) {
-    return <Loader loading={loading}  />;
+    return <Loader loading={loading} />;
   }
 
   return (
@@ -45,11 +45,8 @@ const Rutas = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/rutinas-diarias" element={<RutinasDiarias />} />
-        <Route path='/edit' element={<Edit/>}/>
-        <Route
-          path="/ejercicios"
-          element={usuario ? <Ejercicios /> : <Navigate to="/" />}
-        />
+        <Route path='/edit' element={<Edit />} />
+        <Route path="/ejercicios" element={usuario ? <Ejercicios /> : <Navigate to="/" />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </>
