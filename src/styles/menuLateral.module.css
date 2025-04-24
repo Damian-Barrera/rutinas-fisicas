@@ -22,7 +22,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 220px;
+  width: 250px;
   height: 100%;
   letter-spacing: 2px;
   background: linear-gradient(180deg, #0b090f 20%, #0c2c52 100%);
@@ -60,11 +60,27 @@
 .menuLateral ul li a {
   color: azure;
   text-decoration: none;
+  /* color: #13e258; */
+  text-shadow: 0 0 10px #11ca30;
 }
 
 .menuLateral ul li:hover {
   background-color: #5a5a5a;
 }
+
+.menuLateral ul li span {
+  text-shadow: 0 0 10px #11ca30;
+  display: flex;
+  text-align: center;
+
+}
+ .menuIcons {
+   display: flex;
+   gap: 10px;
+   align-items: center;
+ }
+
+ 
 
 /* **********Responsive******************** */
 

@@ -4,11 +4,12 @@ import Register from '../components/Register'
 import Login from '../components/Login'
 import RutinasDiarias from '../components/RutinasDiarias'
 import Ejercicios from '../components/Ejercicios'
+import Support from '../components/Support'
+import Edit from '../utils/Edit'
 import { auth } from '../config/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import Loader from '../utils/Loader'
-import Edit from '../utils/Edit'
 
 
 
@@ -46,6 +47,7 @@ const Rutas = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/rutinas-diarias" element={<RutinasDiarias />} />
         <Route path='/edit' element={<Edit />} />
+        <Route path='/support' element={<Support />} />
         <Route path="/ejercicios" element={usuario ? <Ejercicios /> : <Navigate to="/" />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>

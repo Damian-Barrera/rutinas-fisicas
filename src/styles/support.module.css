@@ -1,0 +1,80 @@
+.support {
+  padding: 10px;
+  margin-top: 10%;
+  box-shadow: 0 0 25px #1f6a77 inset;
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+.support h2 {
+  color: #0084ff;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.support form {
+  width: 50%;
+  left: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.support form input {
+  margin: 10px 0;
+  height: 30px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  border: none;
+}
+
+.support form input:focus,
+.support form textarea:focus {
+  border: 1px solid #6649a8;
+  background-color: #e2f3f5;
+}
+
+.support form textarea {
+  height: 60px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.support form .btn {
+  background-color: #1b4dd8;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.support form .btn:hover {
+  background-color: #2e5ad4;
+  color: #ffff00;
+}
+
+.support form .btn:last-child {
+  background-color: #d81b1b;
+}
+
+.support form .btn:last-child:hover {
+  background-color: #db3636;
+}
+
+/* **************Medias Querys*************************** */
+
+@media (max-width: 480px) {
+
+    .support form input {
+         height: 35px;
+    
+      }
+    .support {
+        margin-top: 30%;
+    
+    }
+
+  .support form {
+    width: 90%;
+  }
+}
